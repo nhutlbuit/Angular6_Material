@@ -1,0 +1,47 @@
+<th>Employee Detail: </th>
+<br>
+<div class="container">
+        <p>
+        </p>
+        <table class="table table-bordered" *ngIf="user">
+            <tr>
+                <td>
+                    <B>Id</B>
+                </td>
+                <td> {{user?.id}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <B>Name</B>
+                </td>
+                <td> {{user?.username}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <B>Age</B>
+                </td>
+                <td> {{user?.age}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <B>Status</B>
+                </td>
+                <td> {{user?.status}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <B>Create At</B>
+                </td>
+                <td> {{user?.date|date:'dd-MM-yyyy'}}</td>
+            </tr>
+        </table>
+    </div>
+<a class="btn btn-primary" [routerLink]="['overview']">Overview</a>
+<a class="btn btn-primary" [routerLink]="['projects']">Projects</a>
+<a class="btn btn-default" [routerLink]="['/employee']">Go back</a>
+
+<router-outlet>
+
+</router-outlet>
+
+
