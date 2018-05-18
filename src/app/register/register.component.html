@@ -1,55 +1,32 @@
-<form class="form-horizonal" #f="ngForm" method="POST" (ngSubmit)="SaveUserInfo(f.value)" [ngFormOptions]="{updateOn: 'blur'}">
-    <!-- to resolve issue: Cannot read property 'minlength' of null, we can use ? before to check object has definded-->
-    <div class="form-group">
-        <label class="col-md-2"> Email</label>
-        <div class="col-md-10>">
-            <input type="text" [(ngModel)]="user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" name="userName"
-                #name="ngModel" ngModel placeholder="Enter username" minlength="5" maxlength="20" required name="userName" autofocus>
-            <div class="alert alert-danger" [hidden]="!name.errors?.required">Field must be enter!</div>
-            <div class="alert alert-danger" *ngIf="name.invalid">Invalid Email</div>
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label class="col-md-2"> Password</label>
-        <div class="col-md-10>">
-            <input type="password" [(ngModel)]="user.password" class="form-control" name="password" minlength="8" maxlength="20" required
-                name="password" #password="ngModel" ngModel placeholder="Password">
-            <div class="alert alert-danger" [hidden]="!password.errors?.required">Field must be enter!</div>
-            <div *ngIf="password.invalid" class="alert alert-danger">Invalid password</div>
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label class="col-md-2"> Confirm Password</label>
-        <div class="col-md-10>">
-            <input type="password" [(ngModel)]="user.passwordconfirm" class="form-control" minlength="8" maxlength="20" required name="passwordconfirm"
-                #passwordconfirm="ngModel" ngModel placeholder="Confirm Password">
-            <div class="alert alert-danger" [hidden]="!password.errors?.required">Field must be enter!</div>
-            <div class="alert alert-danger" *ngIf="user.password !== user.passwordconfirm">
-                Confrim password missmatch</div>
-        </div>
-    </div>
+<form class="formwidth" #myForm="ngForm" method="POST" (ngSubmit)="SaveUserInfo(f.value)" [ngFormOptions]="{updateOn: 'blur'}">
 
-    <div class="form-group">
-        <div class="col-md-10>">
+    <div class="example-container">
+        <mat-form-field hintLabel="Min 5, Max 20 characters">
+            <input matInput #input minlength="5" maxlength="20" placeholder="Enter your email" [(ngModel)]="user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                #name="ngModel" required name="userName" autofocus ngModel>
+            <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password" minlength="8"
+                maxlength="20" required name="password" #password="ngModel">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Confirm Password" [type]="hide ? 'password' : 'text'" [(ngModel)]="user.passwordconfirm" minlength="8"
+                maxlength="20" required name="passwordconfirm" #passwordconfirm="ngModel" ngModel>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <mat-hint align="end">{{input.value?.length || 0}}/20 </mat-hint>
+            <mat-error *ngIf="user.password !== user.passwordconfirm">Confrim password missmatch</mat-error>
+        </mat-form-field>
+
+        <div class="button-row">
             <button mat-raised-button color="primary" [disabled]="(name.invalid) || (user.password !== user.passwordconfirm)" type="submit">Submit</button>
         </div>
+
     </div>
-
 </form>
-
-
-<div class="example-container">
-    <mat-form-field hintLabel="Max 10 characters">
-      <input matInput #input maxlength="10" placeholder="Enter some input">
-      <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <mat-select placeholder="Select me">
-        <mat-option value="option">Option</mat-option>
-      </mat-select>
-      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
-    </mat-form-field>
-  </div>

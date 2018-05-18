@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angula
 import { Router, ActivatedRoute } from '@angular/router'
 import { LoginService } from '../services/login.service';
 import { UserService } from '../services/user.service';
-import { FormGroup, FormControl } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 @Component({
   selector: 'register-root',
@@ -14,6 +14,7 @@ import { FormGroup, FormControl } from '@angular/forms'
 export class RegisterComponent implements OnInit {
 
   public user: any;
+  passwordconfirm = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(private router: Router,
     private userService: UserService,

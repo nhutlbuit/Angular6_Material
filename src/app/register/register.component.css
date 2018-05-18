@@ -5,4 +5,23 @@
 
 .example-container > * {
   width: 100%;
+ align-items: center;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+.formwidth{
+  margin: 0 auto; 
+  width:250px;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
 }
