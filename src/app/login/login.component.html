@@ -1,37 +1,31 @@
-<form class="form-horizonal" #f="ngForm" method="POST" (ngSubmit)="CheckLogin(f.value)" [ngFormOptions]="{updateOn: 'blur'}">
-<!-- to resolve issue: Cannot read property 'minlength' of null, we can use ? before to check object has definded-->
-    <div class="form-group">
-        <label class="col-md-2"> Email</label>
-        <div class="col-md-10>">
-            <input type="text" class="form-control" name="userName" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #name="ngModel" ngModel placeholder="Enter username" minlength="5"
-                maxlength="20" required name="userName" autofocus >
-            <div class="alert alert-danger" [hidden]="!name.errors?.required">Field must be enter!</div>
-            <!--       *ngIf="name.invalid" has contain [hidden]="!name.errors?.minlength"
-            <div class="alert alert-danger" [hidden]="!name.errors?.minlength">userName must be at least 6 characters</div> -->
-            <div class="alert alert-danger" *ngIf="name.invalid">Invalid Email</div>
+<form class="formwidth" #loginForm="ngForm" method="POST" (ngSubmit)="CheckLogin(loginForm.value)" [ngFormOptions]="{updateOn: 'blur'}">
+
+    <div class="example-container">
+        <mat-form-field>
+            <input matInput #namenumber maxlength="20" placeholder="Enter your email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                [(ngModel)]="user.userName" #name="ngModel" required name="userName" autofocus ngModel>
+            <mat-hint align="end">{{namenumber.value?.length || 0}}/20</mat-hint>
+            <mat-error *ngIf="name.invalid">Invalid Email</mat-error>
+            <mat-error *ngIf="name.errors?.required">Field must be enter!</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput #paswordnumber placeholder="Enter your password" [type]="hide ? 'text' : 'password' " minlength="8" [(ngModel)]="user.password"
+                maxlength="20" required name="password" #password="ngModel" ngModel>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <mat-hint align="end">{{paswordnumber.value?.length || 0}}/20</mat-hint>
+            <mat-error *ngIf="password.invalid">Invalid password</mat-error>
+            <mat-error [hidden]="!password.errors?.required">Field must be enter!</mat-error>
+        </mat-form-field>
+        <br>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox"> Remember me
+            </label>
+        </div>
+        <br>
+        <div class="buttoncolor">
+            <button mat-raised-button color="primary" [disabled]="(name.invalid) || (password.invalid)" type="submit">Submit</button>
         </div>
     </div>
-
-    <div class="form-group">
-        <label class="col-md-2"> Password</label>
-        <div class="col-md-10>">
-            <input type="password" class="form-control" name="password" minlength="8" maxlength="20" required name="password" #password="ngModel"
-                ngModel placeholder="Enter password" >
-            <div class="alert alert-danger" [hidden]="!password.errors?.required">Field must be enter!</div>
-            <div *ngIf="password.invalid" class="alert alert-danger">Invalid password</div>
-        </div>
-    </div>
-
-    <div class="form-group form-check">
-        <label class="form-check-label">
-            <input class="form-check-input" type="checkbox"> Remember me
-        </label>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-10>">
-            <button class="btn btn-primary" [disabled]="name.invalid || password.invalid" type="submit">Submit</button>
-        </div>
-    </div>
-
 </form>

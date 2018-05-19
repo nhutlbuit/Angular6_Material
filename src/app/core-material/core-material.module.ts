@@ -14,7 +14,8 @@ import {
   MatSelectModule,
   MatInputModule,
   MatProgressSpinnerModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatTableModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -43,6 +44,7 @@ const CORE_MODULES = [
   MatOptionModule,
   FormsModule,
   CommonModule,
+  MatTableModule
 ];
 
 @NgModule({

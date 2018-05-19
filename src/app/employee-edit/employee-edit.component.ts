@@ -1,15 +1,16 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable, Subscription } from 'rxjs';
-
 import { Routes, ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
 import { User } from '../model/employeeCustom';
 import { UserDatabase } from '../model/employeeDatabase';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
     selector: 'employee-edit',
-    templateUrl: './employee-edit.component.html'
+    templateUrl: './employee-edit.component.html',
+    styleUrls: ['./employee-edit.component.css']
 })
 
 export class EmployeeEditComponent implements OnInit, OnDestroy {

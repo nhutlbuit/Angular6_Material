@@ -7,7 +7,8 @@ import { EmployeeService } from '../services/employee.service';
 
 @Component({
     selector: 'employee-add',
-    templateUrl: './employee-add.component.html'
+    templateUrl: './employee-add.component.html',
+    styleUrls: ['./employee-add.component.css']
 })
 
 export class EmployeeAddComponent implements OnInit {

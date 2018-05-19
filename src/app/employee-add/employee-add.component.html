@@ -1,40 +1,34 @@
 <th>Add New Employee:</th>
 <br>
-<br>
 <div class="container">
-    <form class="form" #f="ngForm" name="form" (ngSubmit)="SaveForm()">
-        <div class="form-group row">
-            <label class="col-sm-1">
-                <B>Name:</B>
-            </label>
-            <div class="col-sm-11">
-                <input type="text" name="name" [(ngModel)]="employee.name" minlength="2" maxlength="20" 
-                required autofocus #name="ngModel" pattern ="[a-zA-Z ]*" />    
-                <div class="alert alert-danger" *ngIf="name.errors?.pattern">Invalid name</div>        
-                <div class="alert alert-danger" *ngIf="name.invalid">Username must be at least 2 characters</div>    
-            </div>
+    <form class="formwidth" #addEmployeeForm="ngForm" (ngSubmit)="SaveForm()">
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput #nameLength type="text" name="name" [(ngModel)]="employee.name" minlength="2" maxlength="20" required autofocus
+                    #name="ngModel" pattern="[a-zA-Z ]*" placeholder="Name" />
+                <mat-hint align="end">{{nameLength.value?.length || 0}}/20</mat-hint>
+                <mat-error *ngIf="name.invalid">Invalid name</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput #ageLength type="number" name="age" [(ngModel)]="employee.age" #age="ngModel" required placeholder="Age"
+                />
+                <mat-hint align="end">{{ageLength.value?.length || 0}}/20</mat-hint>
+                <div>
+                    <mat-error *ngIf="employee.age <1 || employee.age >99 || age.invalid">Age must be greater than 0 and less than 100</mat-error>
+                </div>
+            </mat-form-field>
         </div>
-        <div class="form-group row">
-            <label class="col-sm-1">
-                <B>Age:</B>
-            </label>
-            <div class="col-sm-11">
-                <input type="number" name="age" [(ngModel)]="employee.age" #age="ngModel" required/>
-                <div class="alert alert-danger" *ngIf="employee.age <1 || employee.age >99">
-                    Age must be greater than 0 and less than 100</div>
-                <div class="alert alert-danger" *ngIf="age.invalid">Field must be enter!</div>
-            </div>
+        <br>
+        <div class="form-group form-check">
+            <B>Status:</B>
+            <input class="form-check-input" type="checkbox" name="status" ngModel [(ngModel)]="employee.status" />
         </div>
-        <div class="form-group row">
-            <label class="col-sm-1">
-                <B>Status:</B>
-            </label>
-            <div class="col-sm-11">
-                <input type="checkbox" name="status" ngModel [(ngModel)]="employee.status" /> </div>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary" type="submit" ng-disabled="!form.$dirty || (form.$dirty && form.$invalid)">Save</button>
-            <button class="btn btn-warning" type="button" (click)="goToEmployee()">Cancel</button>
+        <br>
+        <div class="buttoncolor">
+            <button mat-raised-button color="primary" type="submit" [disabled]="name.invalid || age.invalid">Save</button>
+            &nbsp;
+            <button mat-button color="primary" type="button" (click)="goToEmployee()">Cancel</button>
         </div>
     </form>
 </div>

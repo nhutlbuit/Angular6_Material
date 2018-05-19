@@ -1,37 +1,17 @@
 <section>
+    <ul class="header" role="tablist">
+        <div class="colorbutton">
+            <button mat-button routerLink="/" routerLinkActive="active">Home</button>
 
-    <!-- Header -->
-    <ul class="nav nav-pills navbar-expand-sm bg-dark navbar-dark" role="tablist">
-              
-        <div>
-            <li class="nav-item">
-                <a class="navbar-brand" data-toggle="pill" routerLink="/" routerLinkActive="active">Home</a>
-            </li>
-        </div>
-        <div *ngIf="CheckStatusLogin()">
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" routerLink="/employee" routerLinkActive ="active">Employee List</a>
-            </li>
-        </div>
-        <div *ngIf="CheckStatusLogin()">
-            <li class="nav-item">
-            <a class="nav-link" data-toggle="pill" routerLink="/typescript" routerLinkActive="active" routerLinkActiveOptions="{exact: true}">Type Script</a>
-        </li>
-        </div>       
-        <div *ngIf="!CheckStatusLogin()">
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" routerLink="/login" routerLinkActive="active">Login</a>
-            </li>
-        </div>
-        <div *ngIf="CheckStatusLogin()" >
-            <li class="nav-item">
-                <a class="nav-link" (click)="Logout()" data-toggle="pill" routerLink="/logout" routerLinkActive="active">Logout</a>
-            </li>
-        </div>
-        <div *ngIf="!CheckStatusLogin()" >
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" routerLink="/register" routerLinkActive="active">Register</a>
-            </li>
+            <button mat-button routerLink="/employee" routerLinkActive="active" *ngIf="!CheckStatusLogin()">Employee List</button>
+
+            <button mat-button routerLink="/typescript" routerLinkActive="active" *ngIf="CheckStatusLogin()" routerLinkActiveOptions="{exact: true}">Type Script</button>
+
+            <button mat-button routerLink="/login" routerLinkActive="active" *ngIf="!CheckStatusLogin()">Login</button>
+
+            <button mat-button routerLink="/logout" routerLinkActive="active" *ngIf="CheckStatusLogin()" (click)="Logout()">Logout</button>
+
+            <button mat-button routerLink="/register" routerLinkActive="active" *ngIf="!CheckStatusLogin()">Register</button>
         </div>
     </ul>
 </section>

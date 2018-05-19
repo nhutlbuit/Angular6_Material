@@ -13,8 +13,9 @@
 }
 
 .formwidth{
-  margin: 0 auto; 
-  width:250px;
+  border: black;
+  width: 30%;
+  padding: 8px 100px;
 }
 
 input.example-right-align::-webkit-outer-spin-button,
@@ -24,4 +25,16 @@ input.example-right-align::-webkit-inner-spin-button {
 
 input.example-right-align {
   -moz-appearance: textfield;
+}
+
+:host {
+  display: block;
+  font-size: '20';
+  font-family:  'Times New Roman', Times, serif;
+} 
+    
+.buttoncolor{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }

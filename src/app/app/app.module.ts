@@ -42,8 +42,8 @@ import { CoreMaterialModule } from '../core-material/core-material.module';
     EmployeeEditComponent,
     EmployeeAddComponent,
     HighlightDirective,
-    RegisterComponent
-    
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

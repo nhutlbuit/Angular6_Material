@@ -38,4 +38,10 @@
     flex-wrap: wrap;
     align-items: center;
   }
-  
+
+  .mat-button{
+    background-color:rgb(202, 202, 171);
+    border: 1px solid #ddd;
+    color: black;
+  }   
+

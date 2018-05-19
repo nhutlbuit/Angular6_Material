@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angula
 import { Router, ActivatedRoute } from '@angular/router'
 import { LoginService } from '../services/login.service';
 import { UserService } from '../services/user.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'login-root',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   private email: string;
   private isCheckLogin: boolean;
   private username:string;
+  public user: any;
 
   constructor(private router: Router,
     private userService: UserService,
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.userDatabase = {};
     this.isCheckLogin = false;
+    this.user = {};
   }
 
   CheckLogin(value: any) {
@@ -41,7 +44,7 @@ export class LoginComponent implements OnInit {
     }
 
     if (!this.isCheckLogin) {
-      alert("username or password is not correctly");
+      alert("Email or password is not correctly");
     }
   }
 

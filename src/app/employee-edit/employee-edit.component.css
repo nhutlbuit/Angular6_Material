@@ -1,3 +1,14 @@
+.mat-button{
+    background-color: lawngreen;
+    border: 1px solid rgb(141, 137, 137);
+    color: black;
+}   
+
+.mat-raised-button{
+  background-color:rgb(202, 202, 171);
+    border: 1px solid #ddd;
+    color: black;
+} 
 .example-container {
     display: flex;
     flex-direction: column;
@@ -5,7 +16,6 @@
   
   .example-container > * {
     width: 100%;
-   align-items: center;
   }
   
   .example-right-align {
@@ -14,7 +24,7 @@
   
   .formwidth{
     border: black;
-    width: 30%;
+    width: 500px;
     padding: 8px 100px;
   }
   
@@ -37,5 +47,6 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    padding: 8px 100px;
   }
   
