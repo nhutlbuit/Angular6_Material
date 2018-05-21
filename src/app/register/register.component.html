@@ -1,33 +1,32 @@
+<div class="high-body">
+    <form class="formwidth" #registerForm="ngForm" method="POST" (ngSubmit)="SaveUserInfo(registerForm.value)" [ngFormOptions]="{updateOn: 'blur'}">
 
+        <div class="example-container">
+            <mat-form-field hintLabel="Min 5, Max 20 characters">
+                <input matInput #emailLength minlength="5" maxlength="20" placeholder="Enter your email" [(ngModel)]="user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                    #name="ngModel" required name="userName" autofocus ngModel>
+                <mat-hint align="end">{{emailLength.value?.length || 0}}/20</mat-hint>
+            </mat-form-field>
 
-<form class="formwidth" #registerForm="ngForm" method="POST" (ngSubmit)="SaveUserInfo(registerForm.value)" [ngFormOptions]="{updateOn: 'blur'}">
+            <mat-form-field>
+                <input #passwordLength matInput placeholder="Enter your password" [type]="hide ? 'text' : 'password' " [(ngModel)]="user.password"
+                    minlength="8" maxlength="20" required name="password" #password="ngModel">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <mat-hint align="end">{{passwordLength.value?.length || 0}}/20</mat-hint>
+            </mat-form-field>
 
-    <div class="example-container">
-        <mat-form-field hintLabel="Min 5, Max 20 characters">
-            <input matInput #input minlength="5" maxlength="20" placeholder="Enter your email" [(ngModel)]="user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                #name="ngModel" required name="userName" autofocus ngModel>
-            <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
-        </mat-form-field>
+            <mat-form-field>
+                <input matInput #passwordConfirmLength placeholder="Confirm Password" [type]="hide ? 'text' : 'password' " [(ngModel)]="user.passwordconfirm"
+                    minlength="8" maxlength="20" required name="passwordconfirm" #passwordconfirm="ngModel" ngModel>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <mat-hint align="end">{{passwordConfirmLength.value?.length || 0}}/20 </mat-hint>
+                <mat-error *ngIf="user.password !== user.passwordconfirm">Confrim password missmatch</mat-error>
+            </mat-form-field>
 
-        <mat-form-field>
-            <input matInput placeholder="Enter your password" [type]="hide ? 'text' : 'password' " [(ngModel)]="user.password" minlength="8"
-                maxlength="20" required name="password" #password="ngModel">
-            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-            <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
-        </mat-form-field>
+            <div class="buttoncolor">
+                <button mat-raised-button color="primary" [disabled]="(name.invalid) || (user.password !== user.passwordconfirm)" type="submit">Submit</button>
+            </div>
 
-        <mat-form-field>
-            <input matInput placeholder="Confirm Password" [type]="hide ? 'text' : 'password' " [(ngModel)]="user.passwordconfirm" minlength="8"
-                maxlength="20" required name="passwordconfirm" #passwordconfirm="ngModel" ngModel>
-            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-            <mat-hint align="end">{{input.value?.length || 0}}/20 </mat-hint>
-            <mat-error *ngIf="user.password !== user.passwordconfirm">Confrim password missmatch</mat-error>
-        </mat-form-field>
-
-        <div class="buttoncolor">
-            <button mat-raised-button color="primary" [disabled]="(name.invalid) || (user.password !== user.passwordconfirm)" type="submit">Submit</button>
         </div>
-
-    </div>
-</form>
-
+    </form>
+</div>

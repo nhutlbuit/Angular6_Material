@@ -2,7 +2,8 @@ import { Component, Input, ViewChild, ElementRef, AfterViewInit } from '@angular
 
 @Component({
   selector: 'typescript-root',
-  templateUrl: './typescript.component.html'
+  templateUrl: './typescript.component.html',
+  styleUrls: ['./typescript.component.css']
 })
 export class TypeScriptComponent implements AfterViewInit{
   public title = 'app';

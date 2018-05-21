@@ -3,7 +3,7 @@
         <div class="colorbutton">
             <button mat-button routerLink="/" routerLinkActive="active">Home</button>
 
-            <button mat-button routerLink="/employee" routerLinkActive="active" *ngIf="!CheckStatusLogin()">Employee List</button>
+            <button mat-button routerLink="/employee" routerLinkActive="active" *ngIf="CheckStatusLogin()">Employee List</button>
 
             <button mat-button routerLink="/typescript" routerLinkActive="active" *ngIf="CheckStatusLogin()" routerLinkActiveOptions="{exact: true}">Type Script</button>
 
@@ -15,17 +15,19 @@
         </div>
     </ul>
 </section>
-<router-outlet>
 
+<router-outlet>
 </router-outlet>
 
 <section>
     <footer>
-        <i>
-            <p>Developed by: NhutLe</p>
-            <p>Contact information:
-                <a href="mailto:nhutlbuit@gmail.com">
-                    nhutlbuit@gmail.com</a>.</p>
-        </i>
+        <div class="footer">
+            <div class="item-footer">
+                <p>Developed by: NhutLe</p>
+                <p>Contact information:
+                    <a href="mailto:nhutlbuit@gmail.com">
+                        nhutlbuit@gmail.com</a>.</p>
+            </div>
+        </div>
     </footer>
 </section>

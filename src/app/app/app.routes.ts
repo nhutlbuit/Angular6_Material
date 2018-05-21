@@ -19,7 +19,7 @@ const routing: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: MainPageComponent },
-    { path: 'employee', component: EmployeeComponent/*, canActivate: [CheckLoginGuard]*/},
+    { path: 'employee', component: EmployeeComponent, canActivate: [CheckLoginGuard]},
     { path: 'employee-edit/:id', component: EmployeeEditComponent/*, canDeactivate: [CheckSaveFormGuard]*/},
     { path: 'employee-delete/:id', component: EmployeeDetailComponent},
     { path: 'employee-add', component: EmployeeAddComponent/*, canDeactivate: [CheckSaveFormGuard]*/},

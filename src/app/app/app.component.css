@@ -23,6 +23,10 @@ input.ng-valid {
 
 .header {
     background: #3f51b5;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px 16px;
 }
 
 .docs-navbar-header {
@@ -33,4 +37,18 @@ input.ng-valid {
 }
 .colorbutton{
     color:aliceblue;
+}
+
+.footer{
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 8px;
+    background: #3f51b5;
+}
+
+.item-footer{
+    align-items: center;
+    color: #fff;
+    font-style: italic;
 }

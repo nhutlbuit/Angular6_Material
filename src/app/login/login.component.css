@@ -38,4 +38,10 @@
     flex-wrap: wrap;
     align-items: center;
   }
+
+  .high-body{
+    width: 100%;
+    height: 200%;
+    margin-bottom: 15%;
+  }
   
