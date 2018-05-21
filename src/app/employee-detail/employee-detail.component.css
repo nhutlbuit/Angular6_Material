@@ -1,25 +1,18 @@
-#customers {
-    font-family: "Times New Roman", Times, serif;
+#table {
     border-collapse: collapse;
     width: 60%;
 }
 
-#customers td, #customers th {
+#table td, #table th {
     border: 1px solid #ddd;
     padding: 8px;
 }
+
 /*
 #customers tr:nth-child(even){background-color: #f2f2f2;}
 
 #customers tr:hover {background-color: #ddd;}
 */
-#customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
-}
 
 .mat-button{
     background-color: #00ff00;
@@ -34,4 +27,12 @@
     border: black;
     width: 80%;
     padding: 8px 100px;
+  }
+
+  .btn-goback{
+    color:green; 
+    background-color: transparent; 
+    border: 2px solid green; 
+    border-radius: 5px; 
+    text-transform: uppercase; 
   }

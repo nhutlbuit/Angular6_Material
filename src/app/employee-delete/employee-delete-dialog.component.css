@@ -1,0 +1,17 @@
+.title{
+    color:blue;
+
+}
+
+.container{
+   /* background: blue; */
+    
+}
+
+.content{
+    background-color:white;
+}
+
+.mat-dialog-container {
+    background:mediumturquoise !important;
+}

@@ -1,13 +1,13 @@
-/* Structure */
-.example-container {
+
+  .container {
     display: flex;
     flex-direction: column;
     min-width: 300px;
-    max-height: 600px;
+    max-height: 700px;
     overflow: auto;
   }
   
-  .example-header {
+  .fillter {
     min-height: 64px;
     padding: 8px 24px 0;
   }
@@ -21,7 +21,38 @@
     margin-right: 15%;
   }
 
-  .btnadd{
-    background-color:mediumspringgreen;
-    color: white;
-}   
+  .btn-add{
+    color: #0099CC; 
+    background-color: transparent; 
+    border: 2px solid #0099CC; 
+    border-radius: 5px; 
+    text-transform: uppercase; 
+  }   
+
+  .btn-delete{
+    color:red; 
+    background-color: transparent; 
+    border: 2px solid red; 
+    border-radius: 5px; 
+    text-transform: uppercase; 
+  }
+
+  .btn-modify{
+    color:blue; 
+    background-color: transparent; 
+    border: 2px solid blue; 
+    border-radius: 5px; 
+    text-transform: uppercase; 
+  }
+
+  th{
+    text-align: center !important;
+  }
+
+  #th-name{
+    text-align: left !important;
+  }
+
+  .table-data{
+    text-align: center
+  }

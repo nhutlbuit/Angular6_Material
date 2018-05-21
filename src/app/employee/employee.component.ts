@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
 import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
+import { EmployeeDeleteDialog } from '../employee-delete/employee-delete-dialog.component';
 
 @Component({
   selector: 'employee-list',
@@ -15,6 +16,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 export class EmployeeComponent implements OnInit, AfterViewInit {
   public employees: any[];
+  public name: any;
   public pages: number[];
   public currentPage: number;
   public keyword: string;
@@ -25,7 +27,8 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
 
   constructor(private employeeService: EmployeeService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog) {
 
   }
 
@@ -38,8 +41,8 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() { 
-    //this.LoadData();
+  ngAfterViewInit() {
+    this.LoadData();
   }
 
   ngOnInit() {
@@ -47,20 +50,26 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
       this.currentPage = param['pageNumber'] || 1;
       //  console.log("-Page number is:" + this.currentPage + "\n-Filter is: " + param['filter']);
     });
-    this.LoadData();
+    //this.LoadData();
     this.pages = [1, 2, 3, 4, 5];
   }
 
-  Delete(id: number) {
-    let confirmResult = confirm("Are you sure to delete employee?");
-    if (confirmResult) {
-      this.employeeService.DeleteEmployee(id).subscribe(response => {
-        if (response) {
-          // alert("Delete Ok");
-          this.LoadData();
-        }
-      })
-    }
+  DeleteDialog(id: number) {
+    const dialogRef = this.dialog.open(EmployeeDeleteDialog, {
+      height: '200px',
+      width: '300px',
+      data: { id: id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.employeeService.DeleteEmployee(id).subscribe(response => {
+          if (response) {
+            this.LoadData();
+          }
+        })
+      }
+    });
   }
 
   LoadData() {
@@ -71,6 +80,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     });
   }
 
-
 }
+
+
 

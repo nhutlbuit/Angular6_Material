@@ -28,6 +28,7 @@ import { MatButtonModule, MatCheckboxModule, MatInput, MatOption, MatSelect, Mat
 import { MatFormFieldModule, MatFormField } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { CoreMaterialModule } from '../core-material/core-material.module';
+import { EmployeeDeleteDialog } from '../employee-delete/employee-delete-dialog.component';
 @NgModule({
   declarations: [
     TypeScriptComponent,
@@ -43,7 +44,11 @@ import { CoreMaterialModule } from '../core-material/core-material.module';
     EmployeeAddComponent,
     HighlightDirective,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    EmployeeDeleteDialog
+  ],
+  entryComponents: [
+    EmployeeDeleteDialog
   ],
   imports: [
     BrowserModule,

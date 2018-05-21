@@ -49,4 +49,20 @@
     align-items: center;
     padding: 8px 100px;
   }
+
+  .btn-cancel{
+    color:green; 
+    background-color: transparent; 
+    border: 2px solid green; 
+    border-radius: 5px; 
+    text-transform: uppercase; 
+  }
+
+  .btn-save{
+    color:white; 
+    background-color: #99cc00; 
+    border: 2px solid black; 
+    border-radius: 5px; 
+    text-transform: uppercase; 
+  }
   

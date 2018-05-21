@@ -27,13 +27,13 @@ export class EmployeeAddComponent implements OnInit {
         this.employee = {};
     }
 
-    goToEmployee(){
+    goToEmployee() {
         this.router.navigate(['employee']);
     }
 
-    SaveForm(){
-        this.employeeService.AddEmployee(this.employee).subscribe(response=>{
-            if(response){
+    SaveForm() {
+        this.employeeService.AddEmployee(this.employee).subscribe(response => {
+            if (response) {
                 alert("add success");
                 this.router.navigate(['employee']);
             }

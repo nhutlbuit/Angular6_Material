@@ -43,5 +43,21 @@
     background-color:rgb(202, 202, 171);
     border: 1px solid #ddd;
     color: black;
-  }   
+  }  
+  
+  .btn-save{
+    color:white; 
+    background-color: #99cc00; 
+    border: 2px solid black; 
+    border-radius: 5px; 
+    text-transform: uppercase; 
+  } 
+
+  .btn-cancel{
+    color:green; 
+    background-color: transparent; 
+    border: 2px solid green; 
+    border-radius: 5px; 
+    text-transform: uppercase; 
+  }
 

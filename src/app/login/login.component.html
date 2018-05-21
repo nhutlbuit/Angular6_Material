@@ -1,33 +1,31 @@
-<div class="high-body">
-    <form class="formwidth" #loginForm="ngForm" method="POST" (ngSubmit)="CheckLogin(loginForm.value)" [ngFormOptions]="{updateOn: 'blur'}">
+<form class="formwidth" #loginForm="ngForm" method="POST" (ngSubmit)="CheckLogin(loginForm.value)" [ngFormOptions]="{updateOn: 'blur'}">
 
-        <div class="example-container">
-            <mat-form-field>
-                <input matInput #namenumber maxlength="20" placeholder="Enter your email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                    [(ngModel)]="user.userName" #name="ngModel" required name="userName" autofocus ngModel>
-                <mat-hint align="end">{{namenumber.value?.length || 0}}/20</mat-hint>
-                <mat-error *ngIf="name.invalid">Invalid Email</mat-error>
-                <!--   <mat-error *ngIf="name.errors?.required">Field must be enter!</mat-error>  -->
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-                <input matInput #paswordnumber placeholder="Enter your password" [type]="hide ? 'text' : 'password' " minlength="8" [(ngModel)]="user.password"
-                    maxlength="20" required name="password" #password="ngModel" ngModel>
-                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                <mat-hint align="end">{{paswordnumber.value?.length || 0}}/20</mat-hint>
-                <mat-error *ngIf="password.invalid">Invalid password</mat-error>
-                <!--   <mat-error [hidden]="!password.errors?.required">Field must be enter!</mat-error> -->
-            </mat-form-field>
-            <br>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox"> Remember me
-                </label>
-            </div>
-            <br>
-            <div class="buttoncolor">
-                <button mat-raised-button color="primary" [disabled]="(name.invalid) || (password.invalid)" type="submit">Submit</button>
-            </div>
+    <div class="container">
+        <mat-form-field>
+            <input matInput #namenumber maxlength="20" placeholder="Enter your email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                [(ngModel)]="user.userName" #name="ngModel" required name="userName" autofocus ngModel>
+            <mat-hint align="end">{{namenumber.value?.length || 0}}/20</mat-hint>
+            <mat-error *ngIf="name.invalid">Invalid Email</mat-error>
+            <!--   <mat-error *ngIf="name.errors?.required">Field must be enter!</mat-error>  -->
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput #paswordnumber placeholder="Enter your password" [type]="hide ? 'text' : 'password' " minlength="8" [(ngModel)]="user.password"
+                maxlength="20" required name="password" #password="ngModel" ngModel>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <mat-hint align="end">{{paswordnumber.value?.length || 0}}/20</mat-hint>
+            <mat-error *ngIf="password.invalid">Invalid password</mat-error>
+            <!--   <mat-error [hidden]="!password.errors?.required">Field must be enter!</mat-error> -->
+        </mat-form-field>
+        <br>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox"> Remember me
+            </label>
         </div>
-    </form>
-</div>
+        <br>
+        <div class="buttoncolor">
+            <button mat-raised-button color="primary" [disabled]="(name.invalid) || (password.invalid)" type="submit">Submit</button>
+        </div>
+    </div>
+</form>

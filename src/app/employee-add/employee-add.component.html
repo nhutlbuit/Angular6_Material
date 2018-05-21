@@ -26,9 +26,9 @@
         </div>
         <br>
         <div class="buttoncolor">
-            <button mat-raised-button color="primary" type="submit" [disabled]="name.invalid || age.invalid">Save</button>
+            <button mat-raised-button class="btn-save" type="submit" [disabled]="name.invalid || age.invalid">Save</button>
             &nbsp;
-            <button mat-button color="primary" type="button" (click)="goToEmployee()">Cancel</button>
+            <button mat-button class="btn-cancel" type="button" (click)="goToEmployee()">Cancel</button>
         </div>
     </form>
 </div>

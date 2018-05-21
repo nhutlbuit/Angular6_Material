@@ -1,25 +1,5 @@
-
-img {
-  display: block;
-}
-
-.explanation {
-  margin: 1rem 0;
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: 300;
-}
-.title {
-  text-align: center;
- }
- td {
-  vertical-align:middle;
-  text-align:center;
-}
-
 .container{
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  margin-bottom: 2%;
+  font-weight: bold;
+  color: red;
+  text-align: center;
 }

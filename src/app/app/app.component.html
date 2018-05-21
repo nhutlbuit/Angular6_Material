@@ -1,33 +1,38 @@
-<section>
-    <ul class="header" role="tablist">
-        <div class="colorbutton">
-            <button mat-button routerLink="/" routerLinkActive="active">Home</button>
+<div id="container">
+    <section>
+        <ul id="header" role="tablist">
+            <div class="colorbutton">
+                <button mat-button routerLink="/" routerLinkActive="active">Home</button>
 
-            <button mat-button routerLink="/employee" routerLinkActive="active" *ngIf="CheckStatusLogin()">Employee List</button>
+                <button mat-button routerLink="/employee" routerLinkActive="active" *ngIf="CheckStatusLogin()">Employee List</button>
 
-            <button mat-button routerLink="/typescript" routerLinkActive="active" *ngIf="CheckStatusLogin()" routerLinkActiveOptions="{exact: true}">Type Script</button>
+                <button mat-button routerLink="/typescript" routerLinkActive="active" *ngIf="CheckStatusLogin()" routerLinkActiveOptions="{exact: true}">Type Script</button>
 
-            <button mat-button routerLink="/login" routerLinkActive="active" *ngIf="!CheckStatusLogin()">Login</button>
+                <button mat-button routerLink="/login" routerLinkActive="active" *ngIf="!CheckStatusLogin()">Login</button>
 
-            <button mat-button routerLink="/logout" routerLinkActive="active" *ngIf="CheckStatusLogin()" (click)="Logout()">Logout</button>
+                <button mat-button routerLink="/logout" routerLinkActive="active" *ngIf="CheckStatusLogin()" (click)="Logout()">Logout</button>
 
-            <button mat-button routerLink="/register" routerLinkActive="active" *ngIf="!CheckStatusLogin()">Register</button>
-        </div>
-    </ul>
-</section>
-
-<router-outlet>
-</router-outlet>
-
-<section>
-    <footer>
-        <div class="footer">
-            <div class="item-footer">
-                <p>Developed by: NhutLe</p>
-                <p>Contact information:
-                    <a href="mailto:nhutlbuit@gmail.com">
-                        nhutlbuit@gmail.com</a>.</p>
+                <button mat-button routerLink="/register" routerLinkActive="active" *ngIf="!CheckStatusLogin()">Register</button>
             </div>
-        </div>
-    </footer>
-</section>
+        </ul>
+    </section>
+
+    <div id="body">
+        <router-outlet>
+        </router-outlet>
+    </div>
+
+    <section>
+        <footer>
+            <div id="footer">
+                <div class="item-footer">
+                    <p>Developed by: NhutLe</p>
+                    <p>Contact information:
+                        <a href="mailto:nhutlbuit@gmail.com">
+                            nhutlbuit@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>
