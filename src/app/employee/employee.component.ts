@@ -3,8 +3,8 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
-import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
+import { DataSource, SelectionModel } from '@angular/cdk/collections';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog, MatCheckbox } from '@angular/material';
 import { EmployeeDeleteDialog } from '../employee-delete/employee-delete-dialog.component';
 
 @Component({
@@ -20,15 +20,23 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
   public pages: number[];
   public currentPage: number;
   public keyword: string;
+  public idChecked: number;
+  public isChecked: boolean;
+  public id_temp: number;
+  public count: number = 1;
   displayedColumns = ['name', 'age', 'status', 'created', 'action'];
   //dataSource = new UserDataSource(this.employeeService);
 
   public dataSource;
+  public selection;
+  public selected: boolean;
+
 
   constructor(private employeeService: EmployeeService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog) {
+    this.isChecked = true;
 
   }
 
@@ -38,6 +46,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
       this.employeeService.SearchEmployee(filterValue).subscribe
       this.employees = response;
       this.dataSource = response;
+      this.selection = new SelectionModel(true, response);
     });
   }
 
@@ -77,8 +86,43 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
       this.employeeService.GetListEmployee().subscribe
       this.employees = response;
       this.dataSource = new MatTableDataSource(this.employees);
+      this.selection = new SelectionModel(true, this.employees); 
     });
   }
+
+  HasSelectedGreaterOne(employee: any, check: boolean) {
+    if (check) {
+      this.selection.clear();
+    } else {
+      if (this.selection.selected.length > 1) {
+        return null;
+      } else {
+        return this.selection.isSelected(employee);
+      }
+    }
+  }
+
+  Onchange($even, employee: any, id: number, check: boolean) {
+    if (this.count == 1) {
+      this.isChecked = !check;
+    }
+
+    if ((this.id_temp == id)) {
+      this.isChecked = !check;
+      if (this.count === 2) {
+        this.isChecked = !this.isChecked;
+      }
+    }
+  
+    this.HasSelectedGreaterOne(employee, true);
+    this.id_temp = id;
+    this.idChecked = id;
+    this.count++;
+    return this.selection.toggle(employee);
+  }
+
+
+
 
 }
 

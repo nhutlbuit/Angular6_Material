@@ -16,7 +16,8 @@ import {
   MatProgressSpinnerModule,
   MatFormFieldModule,
   MatTableModule,
-  MatDialogModule
+  MatDialogModule,
+  MatCheckboxModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -46,7 +47,8 @@ const CORE_MODULES = [
   FormsModule,
   CommonModule,
   MatTableModule,
-  MatDialogModule
+  MatDialogModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({

@@ -1,17 +1,12 @@
 <th>Load data from mockup API:</th>
 <br>
+<div class="fillter">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+</div>
+
 <div class="container">
-
-    <div align="right" class="addbutton">
-        <button mat-raised-button color="" class="btn-add" [routerLink]="['/employee-add']">Add New</button>
-    </div>
-
-    <div class="fillter">
-        <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-        </mat-form-field>
-    </div>
-
     <table mat-table #table [dataSource]="dataSource" class="table-data">
 
         <!-- Name Column -->
@@ -38,19 +33,28 @@
             <td mat-cell *matCellDef="let employee"> {{employee?.created |date:'dd-MM-yyyy'}} </td>
         </ng-container>
 
-        <!-- Action Column -->
+        <!-- Select Column -->
         <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef> Action </th>
-
-            <td mat-cell align="center" *matCellDef="let employee">
-                <button mat-button color="primary" [routerLink]="['/employee-detail',employee.id]">Show Detail</button>
-                <button mat-raised-button class="btn-modify" [routerLink]="['/employee-edit',employee.id]">Edit</button>
-                &nbsp;
-                <button mat-raised-button class ="btn-delete" (click)="DeleteDialog(employee.id)">Delete</button>
+            <th mat-header-cell *matHeaderCellDef> Select </th>
+            <td mat-cell *matCellDef="let employee">
+                <mat-checkbox               
+                (change)="Onchange($event, employee, employee.id, isChecked)" 
+                [checked]="HasSelectedGreaterOne(employee, false)">
+                </mat-checkbox>
             </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+</div>
+<br>
+<div align="right" class="addbutton">
+    <button mat-button class="btn-display" [disabled]="isChecked" [routerLink]="['/employee-detail',idChecked]">Display</button>
+    &nbsp;
+    <button mat-raised-button class="btn-modify" [disabled]="isChecked" [routerLink]="['/employee-edit',idChecked]">Edit</button>
+    &nbsp;
+    <button mat-raised-button class="btn-delete" [disabled]="isChecked" (click)="DeleteDialog(idChecked)">Delete</button>
+    &nbsp;
+    <button mat-raised-button color="" class="btn-add" [routerLink]="['/employee-add']">Add</button>
 </div>
