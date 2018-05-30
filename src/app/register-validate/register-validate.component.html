@@ -1,0 +1,52 @@
+<div fxLayout="row" fxLayoutAlign="center" class="formwidth">
+    <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="60%">
+        <div class="container">
+            <form [formGroup]="registerForm" (ngSubmit)="SaveUserInfo(registerForm.value)" novalidate>
+                <div fxLayout="column">
+                    <mat-form-field fxFlex>
+                        <input matInput #emailLength autocomplete="nope" placeholder="Enter your email" formControlName="email">
+                        <mat-error>
+                            <ng-template [ngIf]="registerForm.controls.email?.errors?.required">
+                                Email is required.
+                            </ng-template>
+                            <ng-template [ngIf]="registerForm.controls.email?.errors?.email && registerForm.controls.email?.errors?.pattern">
+                                Email is not fromat correctly.
+                            </ng-template>
+                        </mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field fxFlex>
+                        <input matInput type="password" autocomplete="nope" placeholder="Enter your Password" formControlName="password">
+                        <mat-error>
+                            <ng-template [ngIf]="registerForm.controls.password?.errors?.required">
+                                Password is required.
+                            </ng-template>
+                        </mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field fxFlex>
+                        <input matInput type="password" autocomplete="nope" placeholder="Confirm Password" formControlName="passwordConfirm">
+                        <mat-error>
+                            <ng-template [ngIf]="registerForm.errors?.mismatch">
+                                Password not match.
+                            </ng-template>
+                            <ng-template [ngIf]="registerForm.controls.passwordConfirm?.errors?.required">
+                                Confirm Password is required.
+                            </ng-template>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <div fxFlex>
+                        <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<pre> registerForm: {{registerForm.value|json}} </pre>
+<pre> validation email: {{registerForm.controls.email?.errors|json}}</pre>
+<pre> validation password: {{registerForm.controls.password?.errors|json}}</pre>
+<pre> validation passwordConfirm: {{registerForm.controls.passwordConfirm?.errors|json}}</pre>
+<pre> validation passwordConfirm mismatch: {{registerForm.errors?.mismatch |json}}</pre>
+<pre> validation registerForm for Submition: {{registerForm.invalid |json}}</pre>

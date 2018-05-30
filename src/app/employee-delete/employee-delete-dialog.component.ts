@@ -19,9 +19,12 @@ export class EmployeeDeleteDialog {
     public dialogRef: MatDialogRef<EmployeeDeleteDialog>,
     public employeeService: EmployeeService,
     @Inject(MAT_DIALOG_DATA) public employee: any) {
+      this.employeeName =  employee.name;
+   /*   
     this.employeeService.GetEmployeeDetail(employee.id).subscribe((data: any) => {
       this.employeeName = data.name;
     });
+    */
   }
 
 }

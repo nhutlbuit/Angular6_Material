@@ -19,6 +19,7 @@ export class EmployeeDetailComponent implements OnInit, OnDestroy {
     /// @Input('master') masterName: string;
 
     @Input() user: User = new User();
+    @Input() aaa:string;
 
     constructor(
         private router: Router,
@@ -29,10 +30,8 @@ export class EmployeeDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.activatedRoute.params.subscribe(params => {
-            //get id from url
-            this._id = params['id'];
-            console.log("Id for employee choose" + this._id);
+        this.subscription = this.activatedRoute.params.subscribe(params => {           
+            this._id = params['id']; //get id from url
         });
 
         this.employeeService.GetEmployeeDetail(this._id).subscribe((data: any) => {

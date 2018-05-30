@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'
 import { LoginComponent } from '../login/login.component';
 import { HighlightDirective } from '../highlight/highlight.directive';
@@ -29,6 +29,7 @@ import { MatFormFieldModule, MatFormField } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { CoreMaterialModule } from '../core-material/core-material.module';
 import { EmployeeDeleteDialog } from '../employee-delete/employee-delete-dialog.component';
+import { RegisterValidateComponent } from '../register-validate/register-validate.component';
 @NgModule({
   declarations: [
     TypeScriptComponent,
@@ -45,6 +46,7 @@ import { EmployeeDeleteDialog } from '../employee-delete/employee-delete-dialog.
     HighlightDirective,
     RegisterComponent,
     LoginComponent,
+    RegisterValidateComponent,
     EmployeeDeleteDialog
   ],
   entryComponents: [
@@ -53,6 +55,7 @@ import { EmployeeDeleteDialog } from '../employee-delete/employee-delete-dialog.
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     appRoutes,
     CoreMaterialModule,
   ],

@@ -13,11 +13,13 @@ import { TypeScriptComponent } from '../typescript/typescript.component';
 import { CheckLoginGuard } from '../guards/check-login.component';
 import { CheckSaveFormGuard } from '../guards/check-save-form.component';
 import { RegisterComponent } from '../register/register.component';
+import { RegisterValidateComponent } from '../register-validate/register-validate.component';
 
 const routing: Routes = [
     { path: '', component: MainPageComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'register-validation', component: RegisterValidateComponent },  
     { path: 'logout', component: MainPageComponent },
     { path: 'employee', component: EmployeeComponent, canActivate: [CheckLoginGuard]},
     { path: 'employee-edit/:id', component: EmployeeEditComponent/*, canDeactivate: [CheckSaveFormGuard]*/},

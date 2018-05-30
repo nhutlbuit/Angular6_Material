@@ -13,6 +13,9 @@
                 <button mat-button routerLink="/logout" routerLinkActive="active" *ngIf="CheckStatusLogin()" (click)="Logout()">Logout</button>
 
                 <button mat-button routerLink="/register" routerLinkActive="active" *ngIf="!CheckStatusLogin()">Register</button>
+
+                <button mat-button routerLink="/register-validation" routerLinkActive="active" *ngIf="!CheckStatusLogin()">Register-Validation</button>
+
             </div>
         </ul>
     </section>

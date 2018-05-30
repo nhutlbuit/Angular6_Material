@@ -24,6 +24,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
   public isChecked: boolean;
   public id_temp: number;
   public count: number = 1;
+  public nameEmployee: string;
   displayedColumns = ['name', 'age', 'status', 'created', 'action'];
   //dataSource = new UserDataSource(this.employeeService);
 
@@ -67,7 +68,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(EmployeeDeleteDialog, {
       height: '200px',
       width: '300px',
-      data: { id: id }
+      data: { id: id , name: this.nameEmployee}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -102,7 +103,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  Onchange($even, employee: any, id: number, check: boolean) {
+  Onchange($even, employee: any, id: number, name:string, check: boolean) {
     if (this.count == 1) {
       this.isChecked = !check;
     }
@@ -117,6 +118,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     this.HasSelectedGreaterOne(employee, true);
     this.id_temp = id;
     this.idChecked = id;
+    this.nameEmployee = name; 
     this.count++;
     return this.selection.toggle(employee);
   }
