@@ -5,7 +5,7 @@ import { Routes, ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
 import { User } from '../model/employeeCustom';
 import { UserDatabase } from '../model/employeeDatabase';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder } from '@angular/forms'
 
 @Component({
     selector: 'employee-edit',
@@ -17,29 +17,35 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
     public _id: number;
     public subscription: Subscription;
     @Input() user: User = new User();
-    public employeeUpdate: UserDatabase = new UserDatabase;
+    public employee: any;
+    public editEmployeeForm: FormGroup;
 
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
-        public employeeService: EmployeeService
-    ) {
-
-    }
+        public employeeService: EmployeeService,
+        private formBuilder: FormBuilder) { }
 
     ngOnInit() {
+        this.employee = {};
+        this.getIdFromUrl();
+        this.validateForm();
+        this.getEmployeeDetail();
+    }
+
+    getIdFromUrl() {
         this.subscription = this.activatedRoute.params.subscribe(params => {
             this._id = params['id'];
         });
+    }
 
+    getEmployeeDetail() {
         this.employeeService.GetEmployeeDetail(this._id).subscribe((data: any) => {
-            // this.user = data;
-            this.user.Username = data.name;
-            this.user.Id = data.id;
-            this.user.Age = data.age;
-            this.user.Date = data.created;
-            this.user.Status = data.status;
-            console.log("this.employee" + JSON.stringify(this.user));
+            (<FormControl>this.editEmployeeForm.controls['name']).setValue(data.name);
+            (<FormControl>this.editEmployeeForm.controls['age']).setValue(data.age);
+            (<FormControl>this.editEmployeeForm.controls['status']).setValue(data.status);
+        }, error => {
+            console.log(error);
         });
     }
 
@@ -48,18 +54,47 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
     }
 
     SaveForm() {
-        this.employeeUpdate.name = this.user.Username;
-        this.employeeUpdate.age = this.user.Age;
-        this.employeeUpdate.status = this.user.Status;
-        this.employeeService.UpdateEmployee(this._id, this.employeeUpdate).subscribe(response => {
+        this.employeeService.UpdateEmployee(this._id, this.editEmployeeForm.value).subscribe(response => {
             if (response) {
                 alert("Save success");
                 this.router.navigate(['employee']);
             }
+        }, error => {
+            console.log(error);
         });
     }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+    }
+
+    validateForm() {
+        this.editEmployeeForm = this.formBuilder.group({
+            name: ['', [
+                Validators.required,
+                Validators.minLength(2),
+                Validators.maxLength(20),
+                Validators.pattern("[a-zA-Z]*")
+            ]],
+            age: ['', [
+                Validators.required,
+                Validators.minLength(1),
+                Validators.maxLength(2),
+                Validators.pattern("[0-9]*")
+            ]],
+            status: ['', []],
+        }, {
+                validator: this.ageValidation
+            });
+    }
+
+    ageValidation(abstractControl: AbstractControl) {
+        if (abstractControl.get('age').touched || abstractControl.get('age').dirty) {
+            let age = abstractControl.get('age').value;
+            if (age < 1 || age > 99) {
+                abstractControl.get('age').setErrors({ mismatch: true })
+            }
+            return null;
+        }
     }
 }

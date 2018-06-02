@@ -1,29 +1,44 @@
-<form class="formwidth" #registerForm="ngForm" method="POST" (ngSubmit)="SaveUserInfo(registerForm.value)" [ngFormOptions]="{updateOn: 'blur'}">
-
+<form class="formwidth" [formGroup]="registerForm" method="POST" (ngSubmit)="SaveUserInfo(registerForm.value)">
     <div class="container">
-        <mat-form-field hintLabel="Min 5, Max 20 characters">
-            <input matInput #emailLength minlength="5" maxlength="20" placeholder="Enter your email" [(ngModel)]="user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                #name="ngModel" required name="userName" autofocus ngModel>
-            <mat-hint align="end">{{emailLength.value?.length || 0}}/20</mat-hint>
+        <mat-form-field>
+            <input matInput placeholder="Enter your email" autofocus formControlName="email">
+            <mat-error>
+                <ng-template [ngIf]="registerForm.controls.email?.errors?.required">
+                    Email is required.
+                </ng-template>
+                <ng-template [ngIf]="registerForm.controls.email?.errors?.email && registerForm.controls.email?.errors?.pattern">
+                    Email is not fromat correctly.
+                </ng-template>
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <input #passwordLength matInput placeholder="Enter your password" [type]="hide ? 'text' : 'password' " [(ngModel)]="user.password"
-                minlength="8" maxlength="20" required name="password" #password="ngModel">
+            <input matInput placeholder="Enter your password" [type]="hide?'text':'password'" formControlName="password">
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-            <mat-hint align="end">{{passwordLength.value?.length || 0}}/20</mat-hint>
+            <mat-error>
+                <ng-template [ngIf]="registerForm.controls.password?.errors?.required">
+                    Password is required.
+                </ng-template>
+                <ng-template [ngIf]="registerForm.controls.password?.errors?.pattern">
+                    Password is not fromat correctly.
+                </ng-template>
+            </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
-            <input matInput #passwordConfirmLength placeholder="Confirm Password" [type]="hide ? 'text' : 'password' " [(ngModel)]="user.passwordconfirm"
-                minlength="8" maxlength="20" required name="passwordconfirm" #passwordconfirm="ngModel" ngModel>
+        <mat-form-field *ngIf="registerForm.controls['password'].valid">
+            <input matInput type="password" autocomplete="nope" placeholder="Confirm Password" formControlName="passwordConfirm">
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-            <mat-hint align="end">{{passwordConfirmLength.value?.length || 0}}/20 </mat-hint>
-            <mat-error *ngIf="user.password !== user.passwordconfirm">Confrim password missmatch</mat-error>
+            <mat-error>
+                <ng-template [ngIf]="registerForm.controls.passwordConfirm?.errors?.required">
+                    Confirm Password is required.
+                </ng-template>
+                <ng-template [ngIf]="registerForm.controls['passwordConfirm'].pristine || registerForm.controls['passwordConfirm'].errors?.mismatch">
+                    Password not match.
+                </ng-template>
+            </mat-error>
         </mat-form-field>
-
         <div class="buttoncolor">
-            <button mat-raised-button color="primary" [disabled]="(name.invalid) || (user.password !== user.passwordconfirm)" type="submit">Submit</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Submit</button>
         </div>
 
     </div>

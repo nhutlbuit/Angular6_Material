@@ -10,7 +10,7 @@ import { UserDatabase } from '../model/employeeDatabase';
 @Injectable()
 export class EmployeeService {
     private employeeApiUrl: string = "http://5aea8aeb531a580014142894.mockapi.io/api/employees/";
-    user: User = new User();
+    //user: User = new User();
 
     constructor(private _http: HttpClient) {
 
@@ -63,8 +63,8 @@ export class EmployeeService {
         }
     */
 
-    UpdateEmployee(id: number, user: UserDatabase): Observable<any> {
-        return this._http.put<User>(this.employeeApiUrl + id, user);
+    UpdateEmployee(id: number, user: any): Observable<any> {
+        return this._http.put<any>(this.employeeApiUrl + id, user);
     }
 
     /*
@@ -77,7 +77,7 @@ export class EmployeeService {
         }
     */
     AddEmployee(data: any): Observable<any> {
-        return this._http.post<User>(this.employeeApiUrl, data);
+        return this._http.post<any>(this.employeeApiUrl, data);
     }
 
     /*   

@@ -29,7 +29,6 @@ import { MatFormFieldModule, MatFormField } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { CoreMaterialModule } from '../core-material/core-material.module';
 import { EmployeeDeleteDialog } from '../employee-delete/employee-delete-dialog.component';
-import { RegisterValidateComponent } from '../register-validate/register-validate.component';
 @NgModule({
   declarations: [
     TypeScriptComponent,
@@ -46,7 +45,6 @@ import { RegisterValidateComponent } from '../register-validate/register-validat
     HighlightDirective,
     RegisterComponent,
     LoginComponent,
-    RegisterValidateComponent,
     EmployeeDeleteDialog
   ],
   entryComponents: [
@@ -60,6 +58,7 @@ import { RegisterValidateComponent } from '../register-validate/register-validat
     CoreMaterialModule,
   ],
   exports: [
+    
   ],
   providers: [EmployeeService, LoginService, CheckLoginGuard, CheckSaveFormGuard],
   bootstrap: [AppComponent]

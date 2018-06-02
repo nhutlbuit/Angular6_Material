@@ -1,32 +1,43 @@
 <th>Add New Employee:</th>
 <br>
 <div class="container">
-    <form class="formwidth" #addEmployeeForm="ngForm" (ngSubmit)="SaveForm()">
+    <form class="formwidth" [formGroup]="addEmployeeForm" (ngSubmit)="SaveForm()">
         <div class="example-container">
             <mat-form-field>
-                <input matInput #nameLength type="text" name="name" [(ngModel)]="employee.name" minlength="2" maxlength="20" required autofocus
-                    #name="ngModel" pattern="[a-zA-Z ]*" placeholder="Name" />
-                <mat-hint align="end">{{nameLength.value?.length || 0}}/20</mat-hint>
-                <mat-error *ngIf="name.invalid">Invalid name</mat-error>
+                <input matInput type="text" autofocus placeholder="Name" formControlName="name" />
+                <mat-error>
+                    <ng-template [ngIf]="addEmployeeForm.controls.name?.errors?.pattern">
+                        Invalid name
+                    </ng-template>
+                    <ng-template [ngIf]="addEmployeeForm.controls.name?.errors?.required">
+                        Name is required.
+                    </ng-template>
+                </mat-error>
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input matInput #ageLength type="number" name="age" [(ngModel)]="employee.age" #age="ngModel" required placeholder="Age"
-                />
-                <mat-hint align="end">{{ageLength.value?.length || 0}}/20</mat-hint>
-                <div>
-                    <mat-error *ngIf="employee.age <1 || employee.age >99 || age.invalid">Age must be greater than 0 and less than 100</mat-error>
-                </div>
+                <input matInput type="number" placeholder="Age" formControlName="age" />
+                <mat-error>
+                    <ng-template [ngIf]="addEmployeeForm.controls.name?.age?.pattern">
+                        Invalid age
+                    </ng-template>
+                    <ng-template [ngIf]="addEmployeeForm.controls.name?.age?.required">
+                        Age is required.
+                    </ng-template>
+                    <ng-template [ngIf]="addEmployeeForm.controls['age'].pristine || addEmployeeForm.controls['age'].errors?.mismatch">
+                        Age must be greater than 0 and less than 100
+                    </ng-template>
+                </mat-error>
             </mat-form-field>
         </div>
         <br>
         <div class="form-group form-check">
             <B>Status:</B>
-            <input class="form-check-input" type="checkbox" name="status" ngModel [(ngModel)]="employee.status" />
+            <input class="form-check-input" type="checkbox" formControlName="status" />
         </div>
         <br>
         <div class="buttoncolor">
-            <button mat-raised-button class="btn-save" type="submit" [disabled]="name.invalid || age.invalid">Save</button>
+            <button mat-raised-button class="btn-save" type="submit" [disabled]="addEmployeeForm.invalid">Save</button>
             &nbsp;
             <button mat-button class="btn-cancel" type="button" (click)="goToEmployee()">Cancel</button>
         </div>

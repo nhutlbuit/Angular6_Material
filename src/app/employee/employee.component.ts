@@ -48,7 +48,10 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
       this.employees = response;
       this.dataSource = response;
       this.selection = new SelectionModel(true, response);
-    });
+      this.count == 1;
+    }, error => {
+      console.log(error);
+  });
   }
 
   ngAfterViewInit() {
@@ -68,7 +71,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(EmployeeDeleteDialog, {
       height: '200px',
       width: '300px',
-      data: { id: id , name: this.nameEmployee}
+      data: { id: id, name: this.nameEmployee }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -79,7 +82,9 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
           }
         })
       }
-    });
+    }, error => {
+      console.log(error);
+  });
   }
 
   LoadData() {
@@ -87,7 +92,10 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
       this.employeeService.GetListEmployee().subscribe
       this.employees = response;
       this.dataSource = new MatTableDataSource(this.employees);
-      this.selection = new SelectionModel(true, this.employees); 
+      this.selection = new SelectionModel(true, this.employees);
+      this.count == 1;
+    }, error => {
+      console.log(error);
     });
   }
 
@@ -103,7 +111,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  Onchange($even, employee: any, id: number, name:string, check: boolean) {
+  Onchange($even, employee: any, id: number, name: string, check: boolean) {
     if (this.count == 1) {
       this.isChecked = !check;
     }
@@ -114,11 +122,11 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
         this.isChecked = !this.isChecked;
       }
     }
-  
+
     this.HasSelectedGreaterOne(employee, true);
     this.id_temp = id;
     this.idChecked = id;
-    this.nameEmployee = name; 
+    this.nameEmployee = name;
     this.count++;
     return this.selection.toggle(employee);
   }

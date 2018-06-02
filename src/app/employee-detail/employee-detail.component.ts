@@ -44,8 +44,10 @@ export class EmployeeDetailComponent implements OnInit, OnDestroy {
             this.user.Status = data.status;
             // this.user = data;
 
-            console.log("Employee: " + JSON.stringify(data));
-            console.log("user: " + JSON.stringify(this.user));
+          //  console.log("Employee: " + JSON.stringify(data));
+           // console.log("user: " + JSON.stringify(this.user));
+        }, error => {
+            console.log(error);
         });
     }
 

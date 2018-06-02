@@ -1,22 +1,41 @@
 <th>Edit Employee:</th>
 <br>
-<form class="formwidth" #editForm="ngForm" (ngSubmit)="SaveForm()" *ngIf="user">
+<form class="formwidth" [formGroup]="editEmployeeForm" (ngSubmit)="SaveForm()" *ngIf="user">
     <div class="example-container">
         <mat-form-field>
-            <input matInput type="text" name="name" ngModel [(ngModel)]="user.username" placeholder="Name" />
+            <input matInput type="text" placeholder="Name" formControlName="name"/>
+            <mat-error>
+                    <ng-template [ngIf]="editEmployeeForm.controls.name?.errors?.pattern">
+                        Invalid name
+                    </ng-template>
+                    <ng-template [ngIf]="editEmployeeForm.controls.name?.errors?.required">
+                        Name is required.
+                    </ng-template>
+                </mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input matInput type="number" name="age" ngModel [(ngModel)]="user.age" placeholder="Age" />
+            <input matInput type="number" placeholder="Age" formControlName="age" />
+            <mat-error>
+                    <ng-template [ngIf]="editEmployeeForm.controls.name?.age?.pattern">
+                        Invalid age
+                    </ng-template>
+                    <ng-template [ngIf]="editEmployeeForm.controls.name?.age?.required">
+                        Age is required.
+                    </ng-template>
+                    <ng-template [ngIf]="editEmployeeForm.controls['age'].pristine || addEmployeeForm.controls['age'].errors?.mismatch">
+                        Age must be greater than 0 and less than 100
+                    </ng-template>
+                </mat-error>
         </mat-form-field>
     </div>
     <div class="form-group form-check">
         Status:
-        <input class="form-check-input" type="checkbox" name="status" ngModel [(ngModel)]="user.status" />
+        <input class="form-check-input" type="checkbox" formControlName="status" />
     </div>
     <br>
     <div>
-        <button mat-button class="btn-save" type="submit">Save</button>
+        <button mat-button class="btn-save" type="submit" [disabled]="editEmployeeForm.invalid">Save</button>
         &nbsp;
-        <button mat-raised-button class="btn-cancel"  type="button" (click)="goToEmployee()">Cancel</button>
+        <button mat-raised-button class="btn-cancel" type="button" (click)="goToEmployee()" >Cancel</button>
     </div>
 </form>
