@@ -7,9 +7,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 @Injectable()
 export class UserService {
     private loginApiUrl: string = "http://5aea8aeb531a580014142894.mockapi.io/api/login/";
+    private jsontest: string = "https://api.myjson.com/bins/xntb6";
 
     constructor(private _http: HttpClient) {
 
+    }
+
+    GetJson(): Observable<any> {
+        return this._http.get<any>(this.jsontest);
     }
 
 /*

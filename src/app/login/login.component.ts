@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   private password: string;
   private email: string;
   private isCheckLogin: boolean;
-  private username:string;
+  private username: string;
   public user: any;
   public loginForm: FormGroup;
 
@@ -78,5 +78,7 @@ export class LoginComponent implements OnInit {
       return data;
     });
   }
+
+
 
 }

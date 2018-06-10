@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router'
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router'
 import { LoginService } from '../services/login.service';
 
 @Injectable()
@@ -9,8 +9,10 @@ export class CheckLoginGuard implements CanActivate {
 
   }
 
-  canActivate() {
-    let status = this.loginService.IsLogged();
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    let status: boolean = this.loginService.IsLogged();
+    console.log("route: "+route);
+    console.log("state: "+state);
     return status;
   }
 
