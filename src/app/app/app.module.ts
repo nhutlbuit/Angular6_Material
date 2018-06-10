@@ -29,6 +29,8 @@ import { MatFormFieldModule, MatFormField } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { CoreMaterialModule } from '../core-material/core-material.module';
 import { EmployeeDeleteDialog } from '../employee-delete/employee-delete-dialog.component';
+import { AuthenticationGuard } from '../guards/AuthenticationGuard.component';
+import { AuthenticationChildGuard } from '../guards/AuthenticationChildGuard.component';
 @NgModule({
   declarations: [
     TypeScriptComponent,
@@ -60,7 +62,7 @@ import { EmployeeDeleteDialog } from '../employee-delete/employee-delete-dialog.
   exports: [
     
   ],
-  providers: [EmployeeService, LoginService, CheckLoginGuard, CheckSaveFormGuard],
+  providers: [EmployeeService, LoginService, CheckLoginGuard, CheckSaveFormGuard, AuthenticationGuard, AuthenticationChildGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

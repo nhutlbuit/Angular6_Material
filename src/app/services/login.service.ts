@@ -18,6 +18,10 @@ export class LoginService {
         return this._isLoggedIn = isLoggedIn;
     }
 
+    getStatus():boolean{
+        window.sessionStorage.getItem("user");
+        return false;
+    }
 
 
 }

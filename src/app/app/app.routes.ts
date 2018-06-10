@@ -13,6 +13,8 @@ import { TypeScriptComponent } from '../typescript/typescript.component';
 import { CheckLoginGuard } from '../guards/check-login.component';
 import { CheckSaveFormGuard } from '../guards/check-save-form.component';
 import { RegisterComponent } from '../register/register.component';
+import { AuthenticationGuard } from '../guards/AuthenticationGuard.component';
+import { AuthenticationChildGuard } from '../guards/AuthenticationChildGuard.component';
 
 const routing: Routes = [
     { path: '', component: MainPageComponent },
@@ -23,13 +25,13 @@ const routing: Routes = [
     { path: 'employee-edit/:id', component: EmployeeEditComponent/*, canDeactivate: [CheckSaveFormGuard]*/},
     { path: 'employee-delete/:id', component: EmployeeDetailComponent},
     { path: 'employee-add', component: EmployeeAddComponent/*, canDeactivate: [CheckSaveFormGuard]*/},
-    { path: 'employee-detail/:id', component: EmployeeDetailComponent, 
+    { path: 'employee-detail/:id', component: EmployeeDetailComponent, canActivateChild: [AuthenticationChildGuard], 
         children: [
             { path: 'overview', component: EmployeeOverviewComponent },
             { path: 'projects', component: EmployeeProjectsComponent }
         ]
     },
-    { path: 'typescript', component: TypeScriptComponent, canActivate: [CheckLoginGuard] },
+    { path: 'typescript', component: TypeScriptComponent, canActivate: [CheckLoginGuard || AuthenticationGuard] },
     { path: '**', component: NotFoundComponent }]
 
-export const appRoutes = RouterModule.forRoot(routing/*, { enableTracing: true }*/);
+export const appRoutes = RouterModule.forRoot(routing, { enableTracing: true });
