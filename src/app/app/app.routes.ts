@@ -34,4 +34,4 @@ const routing: Routes = [
     { path: 'typescript', component: TypeScriptComponent, canActivate: [CheckLoginGuard || AuthenticationGuard] },
     { path: '**', component: NotFoundComponent }]
 
-export const appRoutes = RouterModule.forRoot(routing, { enableTracing: true });
+export const appRoutes = RouterModule.forRoot(routing, { /*enableTracing: true */ });
