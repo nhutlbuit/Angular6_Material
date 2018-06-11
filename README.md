@@ -28,11 +28,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Further help
 
-##Reference to learn
-### Example Daixianceng: https://github.com/daixianceng/angular-app-example
-### Example Viet: https://bitbucket.org/garamanagementsystem/
-### regex: https://regexr.com/
-### RXJS: https://www.tiepphan.com/rxjs-reactive-programming/#rxjs-subject
-### Devdoc: http://devdocs.io/javascript/
+### Reference to learn
+#### Example Daixianceng: https://github.com/daixianceng/angular-app-example
+#### Example Viet: https://bitbucket.org/garamanagementsystem/
+#### regex: https://regexr.com/
+#### RXJS: https://www.tiepphan.com/rxjs-reactive-programming/#rxjs-subject
+#### Devdoc: http://devdocs.io/javascript/
 
 
