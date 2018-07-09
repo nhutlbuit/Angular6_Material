@@ -31,6 +31,9 @@ import { CoreMaterialModule } from '../core-material/core-material.module';
 import { EmployeeDeleteDialog } from '../employee-delete/employee-delete-dialog.component';
 import { AuthenticationGuard } from '../guards/AuthenticationGuard.component';
 import { AuthenticationChildGuard } from '../guards/AuthenticationChildGuard.component';
+import { CombieGuard } from '../guards/combieGuards';
+import { Test } from '../guards/test';
+import { OrGuard } from '../guards/orGuard';
 @NgModule({
   declarations: [
     TypeScriptComponent,
@@ -60,9 +63,10 @@ import { AuthenticationChildGuard } from '../guards/AuthenticationChildGuard.com
     CoreMaterialModule,
   ],
   exports: [
-    
+
   ],
-  providers: [EmployeeService, LoginService, CheckLoginGuard, CheckSaveFormGuard, AuthenticationGuard, AuthenticationChildGuard],
+  providers: [EmployeeService, LoginService, CheckLoginGuard, CheckSaveFormGuard,
+    AuthenticationGuard, AuthenticationChildGuard, CombieGuard, Test, OrGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

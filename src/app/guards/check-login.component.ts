@@ -9,12 +9,11 @@ export class CheckLoginGuard implements CanActivate {
 
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let status: boolean = this.loginService.IsLogged();
-    console.log("route: "+route);
-    console.log("state: "+state);
-    return status;
-  }
+  canActivate(): boolean {
+    return false;
+    /* if(this.loginService.getStatus()) return true
+    this.router.navigate(['/login']); */
+    }
 
 
 

@@ -15,23 +15,35 @@ import { CheckSaveFormGuard } from '../guards/check-save-form.component';
 import { RegisterComponent } from '../register/register.component';
 import { AuthenticationGuard } from '../guards/AuthenticationGuard.component';
 import { AuthenticationChildGuard } from '../guards/AuthenticationChildGuard.component';
+import { CombieGuard } from '../guards/combieGuards';
+import { Test } from '../guards/test';
+import { OrGuard } from '../guards/orGuard';
 
 const routing: Routes = [
     { path: '', component: MainPageComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: MainPageComponent },
-    { path: 'employee', component: EmployeeComponent, canActivate: [CheckLoginGuard]},
-    { path: 'employee-edit/:id', component: EmployeeEditComponent/*, canDeactivate: [CheckSaveFormGuard]*/},
-    { path: 'employee-delete/:id', component: EmployeeDetailComponent},
-    { path: 'employee-add', component: EmployeeAddComponent/*, canDeactivate: [CheckSaveFormGuard]*/},
-    { path: 'employee-detail/:id', component: EmployeeDetailComponent, canActivateChild: [AuthenticationChildGuard], 
+    {
+        path: 'employee',
+        component: EmployeeComponent, 
+        canActivate: [CombieGuard]
+    },
+    { path: 'employee-edit/:id', component: EmployeeEditComponent/*, canDeactivate: [CheckSaveFormGuard]*/ },
+    { path: 'employee-delete/:id', component: EmployeeDetailComponent },
+    { path: 'employee-add', component: EmployeeAddComponent/*, canDeactivate: [CheckSaveFormGuard]*/ },
+    {
+        path: 'employee-detail/:id', component: EmployeeDetailComponent, canActivateChild: [AuthenticationChildGuard],
         children: [
             { path: 'overview', component: EmployeeOverviewComponent },
             { path: 'projects', component: EmployeeProjectsComponent }
         ]
     },
-    { path: 'typescript', component: TypeScriptComponent, canActivate: [CheckLoginGuard || AuthenticationGuard] },
+    {
+        path: 'typescript',
+        component: TypeScriptComponent,
+        canActivate: [CombieGuard]
+    },
     { path: '**', component: NotFoundComponent }]
 
 export const appRoutes = RouterModule.forRoot(routing, { /*enableTracing: true */ });
