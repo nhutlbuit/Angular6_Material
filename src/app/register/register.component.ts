@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
   public user: any;
   public registerForm: FormGroup;
   roles: Roles[];
+  public hide: boolean;
 
   constructor(private router: Router,
     private userService: UserService,

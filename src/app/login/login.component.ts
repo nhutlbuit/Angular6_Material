@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   private username: string;
   public user: any;
   public loginForm: FormGroup;
+  public hide: boolean;
 
   constructor(private router: Router,
     private userService: UserService,

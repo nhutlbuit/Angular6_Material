@@ -2,7 +2,7 @@ export class User {
     private id: number;
     private date: Date;
     private username: string;
-    private age: number;
+    public age: number;
     private status: boolean;
 
     public get Username(): string {

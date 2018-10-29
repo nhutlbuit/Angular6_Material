@@ -18,10 +18,10 @@
             <mat-form-field>
                 <input matInput type="number" placeholder="Age" formControlName="age" />
                 <mat-error>
-                    <ng-template [ngIf]="addEmployeeForm.controls.name?.age?.pattern">
+                    <ng-template [ngIf]="addEmployeeForm.controls.age">
                         Invalid age
                     </ng-template>
-                    <ng-template [ngIf]="addEmployeeForm.controls.name?.age?.required">
+                    <ng-template [ngIf]="addEmployeeForm.controls.age">
                         Age is required.
                     </ng-template>
                     <ng-template [ngIf]="addEmployeeForm.controls['age'].pristine || addEmployeeForm.controls['age'].errors?.mismatch">

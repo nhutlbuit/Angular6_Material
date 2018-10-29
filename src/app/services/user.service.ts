@@ -6,7 +6,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Injectable()
 export class UserService {
-    private loginApiUrl: string = "http://5aea8aeb531a580014142894.mockapi.io/api/login/";
+    private loginApiUrl: string = "https://5aea8aeb531a580014142894.mockapi.io/api/login/";
     private jsontest: string = "https://api.myjson.com/bins/xntb6";
 
     constructor(private _http: HttpClient) {

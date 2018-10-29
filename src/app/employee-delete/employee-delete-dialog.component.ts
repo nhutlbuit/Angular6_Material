@@ -13,7 +13,7 @@ import { User } from '../model/employeeCustom';
 
 export class EmployeeDeleteDialog {
 
- private employeeName:string;
+ public employeeName:string;
 
   constructor(
     public dialogRef: MatDialogRef<EmployeeDeleteDialog>,

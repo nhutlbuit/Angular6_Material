@@ -9,7 +9,7 @@ import { UserDatabase } from '../model/employeeDatabase';
 
 @Injectable()
 export class EmployeeService {
-    private employeeApiUrl: string = "http://5aea8aeb531a580014142894.mockapi.io/api/employees/";
+    private employeeApiUrl: string = "https://5aea8aeb531a580014142894.mockapi.io/api/employees/";
     //user: User = new User();
 
     constructor(private _http: HttpClient) {

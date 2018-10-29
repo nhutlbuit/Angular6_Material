@@ -15,7 +15,7 @@ export class EmployeeOverviewComponent implements OnDestroy, OnInit{
     public parentRouterId: number;
     public sub: Subscription;
 
-    @Input() employee: User;
+    @Input() public employee: User;
 
     constructor(private router:Router, private activatedRoute:ActivatedRoute){
 
