@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
   roles: Roles[];
   public hide: boolean;
+  arrayA: any;
 
   constructor(private router: Router,
     private userService: UserService,
@@ -182,7 +183,28 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  filter() {
 
+    this.arrayA = [{'a': 'a'}, {'a': 'b'}, {'a': 'c'}];
+
+     this.arrayA.filter(element => element.a !== 'a').map( ele => {ele.a = 'a' + ele.a;});
+
+    // arrayA.reduce((res, cur) => {
+    //   if (cur.a !== 'a') {
+    //     res.push({['a']: cur.a + 'a'});
+    //   }
+    //   return res;
+    // }, []).map( ele => {
+    //   ele.a = 'a' + ele.a;
+    // });
+
+    // const arrayB = arrayA.filter(element => element.a !== 'a');
+    // arrayB.map( ele => {
+    //   ele.a = 'a' + ele.a;
+    // });
+    // arrayA = arrayB;
+    console.log(JSON.stringify(this.arrayA ));
+  }
 
 
 }

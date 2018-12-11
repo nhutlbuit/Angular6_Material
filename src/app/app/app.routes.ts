@@ -1,23 +1,18 @@
-import { Routes, RouterModule } from '@angular/router'
-import { AppComponent } from './app.component'
-import { EmployeeComponent } from '../employee/employee.component'
-import { LoginComponent } from '../login/login.component'
-import { NotFoundComponent } from '../notfound/notfound.component'
-import { MainPageComponent } from '../mainpage/mainpage.component'
-import { EmployeeDetailComponent } from '../employee-detail/employee-detail.component'
+import { Routes, RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { EmployeeComponent } from '../employee/employee.component';
+import { LoginComponent } from '../login/login.component';
+import { NotFoundComponent } from '../notfound/notfound.component';
+import { MainPageComponent } from '../mainpage/mainpage.component';
+import { EmployeeDetailComponent } from '../employee-detail/employee-detail.component';
 import { EmployeeOverviewComponent } from '../employee-overview/employee-overview.component';
 import { EmployeeProjectsComponent } from '../employee-projects/employee-project.component';
 import { EmployeeEditComponent } from '../employee-edit/employee-edit.component';
 import { EmployeeAddComponent } from '../employee-add/employee-add.component';
 import { TypeScriptComponent } from '../typescript/typescript.component';
-import { CheckLoginGuard } from '../guards/check-login.component';
-import { CheckSaveFormGuard } from '../guards/check-save-form.component';
 import { RegisterComponent } from '../register/register.component';
-import { AuthenticationGuard } from '../guards/AuthenticationGuard.component';
 import { AuthenticationChildGuard } from '../guards/AuthenticationChildGuard.component';
 import { CombieGuard } from '../guards/combieGuards';
-import { Test } from '../guards/test';
-import { OrGuard } from '../guards/orGuard';
 
 const routing: Routes = [
     { path: '', component: MainPageComponent },
@@ -26,7 +21,7 @@ const routing: Routes = [
     { path: 'logout', component: MainPageComponent },
     {
         path: 'employee',
-        component: EmployeeComponent, 
+        component: EmployeeComponent,
         canActivate: [CombieGuard]
     },
     { path: 'employee-edit/:id', component: EmployeeEditComponent/*, canDeactivate: [CheckSaveFormGuard]*/ },
@@ -44,6 +39,6 @@ const routing: Routes = [
         component: TypeScriptComponent,
         canActivate: [CombieGuard]
     },
-    { path: '**', component: NotFoundComponent }]
+    { path: '**', component: NotFoundComponent }];
 
 export const appRoutes = RouterModule.forRoot(routing, { /*enableTracing: true */ });
