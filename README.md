@@ -38,6 +38,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Deploy to github IO
 #### Step 1: ng build --prod --base-href https://nhutlbuit.github.io/Angular6_Material/
 #### Step 2: git config --global credential.helper wincred
-#### Step 3: ngh --no-silent
+#### Step 3: npm install -g angular-cli-ghpages
+#### Step 4: ngh --no-silent
 
 
